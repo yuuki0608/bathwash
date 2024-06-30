@@ -1,0 +1,43 @@
+.title {
+  font-size: 25px;
+}
+.subtitle {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+.calendar div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.day {
+  background-color: #f0f0f0;
+}
+.hoverable {
+  transition: all 0.15s;
+}
+.selected {
+  font-weight: bold;
+}
+.aoi {
+  color: red;
+}
+.yuuki {
+  color: blue;
+}
+.sonota {
+  color: gray;
+}
+.disabled {
+  background-color: #dcdcdc;
+  pointer-events: none; /* クリックを無効化 */
+  cursor: not-allowed;
+}
