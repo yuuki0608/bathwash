@@ -79,22 +79,18 @@
             // Cookieに選択情報を保存する関数
             function saveToCookie() {
                 const jsonSelectedDates = JSON.stringify(selectedDates);
-                document.cookie = `selectedDates=${jsonSelectedDates}; expires=${getCookieExpirationDate()}; path=/`;
-            }
-
-            // Cookieの有効期限を設定する関数
-            function getCookieExpirationDate() {
-                const nextMonth = currentMonth + 1 > 12 ? 1 : currentMonth + 1;
-                const nextYear = nextMonth === 1 ? currentYear + 1 : currentYear;
-                const nextMonthDays = new Date(nextYear, nextMonth, 0).getDate();
-                return new Date(nextYear, nextMonth - 1, nextMonthDays + 1).toUTCString();
+                const cookieName = `selectedDates_${currentYear}_${currentMonth}`;
+                const expires = new Date();
+                expires.setMonth(expires.getMonth() + 1);
+                document.cookie = `${cookieName}=${jsonSelectedDates}; expires=${expires.toUTCString()}; path=/`;
             }
 
             // Cookieから選択情報を読み込む関数（初期化時に呼び出す）
             function loadFromCookie() {
+                const cookieName = `selectedDates_${currentYear}_${currentMonth}`;
                 const cookieValue = document.cookie
                     .split('; ')
-                    .find(row => row.startsWith('selectedDates='))
+                    .find(row => row.startsWith(cookieName))
                     ?.split('=')[1];
                 if (cookieValue) {
                     selectedDates = JSON.parse(cookieValue);
