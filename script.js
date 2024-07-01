@@ -1,4 +1,4 @@
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
             const calendarElement = document.querySelector('.calendar');
             const subtitleElement = document.querySelector('.subtitle');
             const daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
@@ -93,7 +93,7 @@
                     .find(row => row.startsWith(cookieName))
                     ?.split('=')[1];
                 if (cookieValue) {
-                    selectedDates = JSON.parse(cookieValue);
+                    selectedDates = JSON.parse(decodeURIComponent(cookieValue));
                     updateCalendar();
                 }
             }
